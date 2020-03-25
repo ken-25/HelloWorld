@@ -1,0 +1,20 @@
+// Place all the styles related to the post controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*index*/
+.post-index{
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+  padding: 20px 30px;
+  margin: 0 10px;
+}
+
+/*new*/
+.post-new textarea{
+  padding: 10px;
+  min-height: 140px;
+  border: 1px solid #c1ced7;
+  resize: none;
+}
