@@ -15,8 +15,8 @@
  */
 /*共通-----------------------------------*/
  body {
-   color: #f4c98a;
-   background-color: #4f2d0d;
+   color: brack;
+   background-color: #F9C270;
    margin: 0;
    min-height: 1vh;
  }
@@ -26,15 +26,13 @@
    width: 100%;
    height: auto;
    min-height: 100%;
-   background-color: #f5f8fa;
  }
  form input[type="submit"] {
   border: none;
   cursor: pointer;
 }
 .content{
-  color: #4f2d0d;
-  background-color: #f4c98a
+
 }
 
  /*header-----------------------------------*/
@@ -42,13 +40,12 @@
    height: 64px;
    z-index: 1;
    width: 100%;
-   background-color: #f4c98a
+   background-color: #FFF67F;
  }
  .header-logo {
   float: left;
   /*padding-left: 20px;*/
   margin: 15px 30px;
-  color: #4f2d0d;
   font-size: 22px;
 }
  .header-menus {
@@ -57,7 +54,6 @@
 
  .header-menus li {
    float: left;
-   color: white;
    margin: 0 20px;
    list-style: none;
  }
