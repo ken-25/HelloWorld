@@ -9,13 +9,17 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <div class="header-logo">
-      <%= link_to("キリン","/") %>
+    <div class="header-top">
+      <div class="header-logo">
+        <%= link_to("キリン","/") %>
+      </div>
+      <ul class="header-menus">
+        <li><%= link_to("キリンとは","/about") %></li>
+        <li><%= link_to("投稿一覧","/posts/index") %></li>
+        <li><%= link_to("user一覧","/users/index") %></li>
+        <li><%= link_to("新規投稿","/posts/new") %></li>
+      </ul>
     </div>
-    <ul class="header-menus">
-      <li><%= link_to("●●とは？","/about") %></li>
-      <li><%= link_to("投稿一覧","/posts/index") %></li>
-    </ul>
 
   </header>
 

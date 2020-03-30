@@ -1,0 +1,22 @@
+<div class="content">
+  <h1>新規登録</h1>
+  <p>aaa</p>
+
+  <div class="user-new">
+    <dib class="error-message">
+      <% @user.errors.full_messages.each do |message| %>
+      <%= message %>
+      <% end %>
+    </dib>
+    <%= form_tag("/users/create") do %>
+      <p>ユーザー名</p>
+      <input name="name">
+      <p>メールアドレス</p>
+      <input name="email">
+      <p>パスワード</p>
+      <input name="password" type="password">
+      <br>
+      <input type="submit" value="登録">
+    <% end %>
+  </div>
+</div>

@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// 共通
+.error-message{
+  color: red;
+}
+
 /*index*/
 .post-index{
   background-color: white;
@@ -12,9 +17,17 @@
 }
 
 /*new*/
+.post-new{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+}
 .post-new textarea{
   padding: 10px;
   min-height: 140px;
   border: 1px solid #c1ced7;
   resize: none;
+  max-width: 300px;
+  width: 100%;
 }

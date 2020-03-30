@@ -1,9 +1,11 @@
-<h1>投稿一覧</h1>
-<p>ここは投稿一覧です</p>
+<div class="content">
+  <h1>投稿一覧</h1>
+  <p>ここは投稿一覧です</p>
 
-<%= link_to("新規投稿","/posts/new") %>
-<% @posts.each do |post| %>
+  <%= link_to("新規投稿","/posts/new") %>
+  <% @posts.each do |post| %>
   <div class="post-index">
     <%= link_to(post.content, "/posts/#{post.id}") %>
   </div>
-<% end %>
+  <% end %>  
+</div>

@@ -1,11 +1,13 @@
-<h1>Post#index</h1>
-<p>Find me in app/views/post/index.html.erb</p>
-
 <div class="content">
-  <%= @post.content %>
-  <div>
-    <%= @post.created_at %>
+  <h1>Post#index</h1>
+  <p>Find me in app/views/post/index.html.erb</p>
+
+  <div class="">
+    <%= @post.content %>
+    <div>
+      <%= @post.created_at %>
+    </div>
+    <%= link_to("編集","/posts/#{@post.id}/edit") %>
+    <%= link_to("削除","/posts/#{@post.id}/destroy",{method:"post"}) %>
   </div>
-  <%= link_to("編集","/posts/#{@post.id}/edit") %>
-  <%= link_to("削除","/posts/#{@post.id}/destroy",{method:"post"}) %>
 </div>

@@ -5,16 +5,20 @@ class PostController < ApplicationController
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
+    @Post = Post.find_by(id: params[:id])
   end
 
   def new
+    @post = Post.new
   end
 
   def create
     @post = Post.new(content: params[:content])
-    @post.save
-    redirect_to("/posts/index")
+    if @post.save
+      redirect_to("/posts/index")
+    else
+      render("/post/new")
+    end
   end
 
   def edit
@@ -24,8 +28,11 @@ class PostController < ApplicationController
   def update
     @post = Post.find_by(id: params[:id])
     @post.content = params[:content]
-    @post.save
-    redirect_to("/posts/index")
+    if @post.save
+      redirect_to("/posts/index")
+    else
+      render("/post/edit")
+    end
   end
 
   def destroy
