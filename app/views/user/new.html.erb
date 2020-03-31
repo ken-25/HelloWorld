@@ -1,4 +1,4 @@
-<div class="content">
+<div class="main-content">
   <h1>新規登録</h1>
   <p>aaa</p>
 
@@ -8,13 +8,13 @@
       <%= message %>
       <% end %>
     </dib>
-    <%= form_tag("/users/create") do %>
+    <%= form_tag(user_index_path, method: :post) do %>
       <p>ユーザー名</p>
-      <input name="name">
+      <input name="name" value="<%= @user.name %>">
       <p>メールアドレス</p>
-      <input name="email">
+      <input name="email" type="email" value="<%= @user.email %>">
       <p>パスワード</p>
-      <input name="password" type="password">
+      <input name="password" type="password" value="<%= @user.password %>">
       <br>
       <input type="submit" value="登録">
     <% end %>

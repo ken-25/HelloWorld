@@ -11,11 +11,16 @@ class UserController < ApplicationController
   end
 
   def create
-    @user = User.new(name: params[:name], email: params[:email], password:params[:password])
+    @user = User.new(
+      name: params[:name],
+      email: params[:email],
+      password: params[:password],
+      img_name: "default_user.jpg"
+    )
     if @user.save
-      redirect_to("/users/index")
+      redirect_to user_index_url
     else
-      render("/user/new")
+      render :new
     end
   end
 
@@ -27,16 +32,21 @@ class UserController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
+    if params[:image]
+      @user.img_name = "#{@user.id}.jpg"
+      image = params[:image]
+      File.binwrite("public/users?img/#{@user.img_name}", image.read)
+    end
     if @user.save
-      redirect_to("/users/index")
+      redirect_to user_index_url
     else
-      render("/user/edit")
+      render :edit
     end
   end
 
   def destroy
     @user = User.find_by(id: params[:id])
     @user.destroy
-    redirect_to("/users/index")
+    redirect_to user_index_url
   end
 end

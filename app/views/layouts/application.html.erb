@@ -11,13 +11,14 @@
 
     <div class="header-top">
       <div class="header-logo">
-        <%= link_to("キリン","/") %>
+        <%= link_to("キリンったー","/") %>
       </div>
       <ul class="header-menus">
-        <li><%= link_to("キリンとは","/about") %></li>
-        <li><%= link_to("投稿一覧","/posts/index") %></li>
-        <li><%= link_to("user一覧","/users/index") %></li>
-        <li><%= link_to("新規投稿","/posts/new") %></li>
+        <li><%= link_to("About", about_path) %></li>
+        <li><%= link_to("新規登録", new_user_path) %></li>
+
+        <li><%= link_to("投稿一覧", post_index_path) %></li>
+        <li><%= link_to("新規投稿", new_post_path) %></li>
       </ul>
     </div>
 
@@ -26,4 +27,14 @@
   <body>
     <%= yield %>
   </body>
+  <footer>
+    <h1>作成中</h1>
+    <ul>
+      <li><%= link_to("About", about_path) %></li>
+      <li><%= link_to("新規登録", new_user_path) %></li>
+      <li><%= link_to("user一覧", user_index_path) %></li>
+      <li><%= link_to("投稿一覧", post_index_path) %></li>
+      <li><%= link_to("新規投稿", new_post_path) %></li>
+    </ul>
+  </footer>
 </html>

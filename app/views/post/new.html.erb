@@ -1,4 +1,4 @@
-<div class="content">
+<div class="main-content">
   <h1>投稿する</h1>
   <p>aaa</p>
 
@@ -8,8 +8,8 @@
       <%= message %>
       <% end %>
     </dib>
-    <%= form_tag("/posts/create") do %>
-    <textarea name="content"></textarea><br>
+    <%= form_tag(post_index_path, method: :post) do %>
+    <textarea name="content"><%= @post.content %></textarea><br>
     <input type="submit" value="投稿">
     <% end %>
   </div>
