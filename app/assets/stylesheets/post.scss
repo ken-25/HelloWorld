@@ -3,17 +3,81 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // 共通
-.error-message{
-  color: red;
-}
-
-/*index*/
-.post-index{
+.post-content{
   background-color: white;
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
   padding: 20px 30px;
   margin: 0 10px;
+}
+//index
+.postindex-{
+  &content{
+    display: flex;
+    background-color: white;
+    box-shadow: 0 2px 6px #c1ced7;
+    padding: 20px 30px;
+    margin: 0 10px;
+  }
+  &img{
+    width: 20%;
+  }
+  &img img{
+    width: 100%;
+  }
+  &text{
+    flex-direction: column;
+    width: 80%;
+    margin-left: 2px;
+  }
+  &user{
+
+  }
+  &tweet{
+    font-size: 20px;
+  }
+  &date{
+    text-align: right;
+    color: #999;
+  }
+}
+
+//show
+.postshow-{
+  &content{
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 2px 6px #c1ced7;
+    padding: 20px 30px;
+    margin: 0 10px;
+  }
+  &user{
+    display: flex;
+    margin: 5px;
+  }
+  &img{
+    width: 20%;
+  }
+  &img img{
+    width: 100%;
+  }
+  &name{
+    width: 80%;
+    align-self: center;
+    margin-left: 1em;
+  }
+  &tweet{
+    margin: 5px;
+    font-size: 20px;
+  }
+  &date{
+    text-align: right;
+    color: #999;
+  }
+  &edit{
+    text-align: right;
+    margin: 3px;
+  }
 }
 
 /*new*/

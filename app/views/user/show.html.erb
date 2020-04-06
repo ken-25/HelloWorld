@@ -1,14 +1,13 @@
 <div class="main-content">
-  <h1>Post#index</h1>
-  <p>Find me in app/views/post/index.html.erb</p>
+  <h1>user詳細</h1>
+  <p><%= @user.name %>さんのプロフィール</p>
 
-  <div class="">
-    <img src="<% "/users_img/#{@user.img_name}" %>" alt="">
-    <%= @user.name %>
-    <div>
-      <%= @user.created_at %>
-    </div>
+  <div class="user-show">
+    <img src=<%= "/users_img/#{@user.img_name}" %> alt="profile_img">
+    <p><%= @user.created_at %>に登録しました</p>
+    <% if @user.id == @current_user.id %>
     <%= link_to("編集", edit_user_path) %>
-    <%= link_to("削除", @user , method: :delete) %>
+    <%= link_to("退会", @user , method: :delete) %>
+    <% end %>
   </div>
 </div>

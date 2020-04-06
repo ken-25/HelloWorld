@@ -40,11 +40,15 @@ form input[type="submit"]:hover {
 }
 .main-content{
   position: relative;
-  width: 600px;
+  width: 1000px;
+  max-width: 50%;
   margin-left: auto;
   margin-right: auto;
   background-color: #fcfcfc;
 
+}
+.error-message{
+  color: red;
 }
 
  /*header-----------------------------------*/
@@ -55,6 +59,7 @@ form input[type="submit"]:hover {
    position: relative;
    top: 0;
    height: 400px;
+   min-height: 30%;
    overflow: hidden;
  }
  .header-top{
@@ -78,6 +83,7 @@ form input[type="submit"]:hover {
    float: right;
    margin: 0;
    overflow: hidden;
+   word-wrap: break-word;
  }
  .header-menus li {
    float: left;
@@ -87,6 +93,7 @@ form input[type="submit"]:hover {
    margin-right: 2px;
    text-align: center;
    list-style: none;
+   word-wrap: break-word;
  }
  .header-menus a {
    padding: 30px 20px;

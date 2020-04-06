@@ -1,13 +1,26 @@
 <div class="main-content">
-  <h1>Post#show</h1>
-  <p>詳細</p>
+<p><%= link_to("←投稿一覧へ", post_index_path) %></p>
 
-  <div class="">
-    <%= @post.content %>
-    <div>
-      <%= @post.created_at %>
+  <div class="postshow-content">
+    <div class="postshow-user">
+      <div class="postshow-img">
+        <img src=<%= "/users_img/#{@user.img_name}" %> alt="profile_img">
+      </div>
+      <div class="postshow-name">
+        <p><%= link_to(@user.name, user_path(@user.id)) %></p>
+      </div>
     </div>
-    <%= link_to("編集", edit_post_path) %>
-    <%= link_to("削除", @post , method: :delete) %>
+    <div class="postshow-tweet">
+      <p><%= @post.content %></p>
+    </div>
+    <div class="postshow-date">
+      <p><%= @post.created_at %></p>
+    </div>
+    <div class="postshow-edit">
+      <% if @post.user_id == @current_user.id %>
+      <%= link_to("編集", edit_post_path) %>
+      <%= link_to("削除", @post , method: :delete) %>
+      <% end %>
+    </div>
   </div>
 </div>

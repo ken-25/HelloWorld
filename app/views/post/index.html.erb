@@ -3,9 +3,24 @@
   <p>ここは投稿一覧です</p>
 
   <%= link_to("新規投稿", new_post_path) %>
+
   <% @posts.each do |post| %>
-  <div class="post-index">
-    <%= link_to(post.content, post_path(post.id)) %>
+  <div class="postindex-content">
+    <div class="postindex-img">
+      <img src="<%= "/users_img/#{post.user.img_name}" %>" alt="">
+    </div>
+    <div class="postindex-text">
+      <div class="postindex-user">
+        <%= link_to(post.user.name, user_path(post.user_id)) %>
+      </div>
+      <div class="postindex-tweet">
+        <%= link_to(post.content, post_path(post.id)) %>
+      </div>
+      <div class="postindex-date">
+        <%= post.created_at %>
+      </div>
+    </div>
   </div>
   <% end %>
+
 </div>
