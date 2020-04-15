@@ -17,7 +17,9 @@ class ApplicationController < ActionController::Base
     end
    end
    def ensure_correct_user
-     if @current_user.id != params[:id].to_i
+     if @current_user.admin? || @current_user.id == params[:id].to_i
+       flash[:notice] =""
+     else
        flash[:notice] ="権限がありません"
        redirect_to post_index_url
      end
@@ -27,5 +29,13 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "すでにログインしています"
       redirect_to post_index_url
     end
+   end
+   def admin_user
+     if @current_user.admin?
+       flash[:notice] =""
+     else
+       flash[:notice] ="権限がありません"
+       redirect_to post_index_url
+     end
    end
 end

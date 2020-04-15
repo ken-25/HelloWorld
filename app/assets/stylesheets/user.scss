@@ -29,3 +29,34 @@
   max-height: 30%;
 
 }
+//show
+.usershow-{
+  &content{
+    display: flex;
+    background-color: white;
+    box-shadow: 0 2px 6px #c1ced7;
+    padding: 20px 30px;
+    margin: 0 10px;
+  }
+  &img{
+    width: 20%;
+  }
+  &img img{
+    width: 100%;
+  }
+  &text{
+    flex-direction: column;
+    width: 80%;
+    margin-left: 2px;
+  }
+  &user{
+
+  }
+  &tweet{
+    font-size: 20px;
+  }
+  &date{
+    text-align: right;
+    color: #999;
+  }
+}

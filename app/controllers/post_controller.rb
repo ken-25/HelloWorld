@@ -1,6 +1,6 @@
 class PostController < ApplicationController
-  before_action :authenticate_user, {only:[:edit, :update]}
-  before_action :ensure_correct_user, {only:[:edit, :update]}
+  before_action :authenticate_user, {only:[:new, :create, :edit, :update, :destroy]}
+  before_action :ensure_correct_user, {only:[:edit, :update, :destroy]}
 
   def index
     @posts = Post.all.order(created_at: :desc)
@@ -38,6 +38,17 @@ class PostController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.destroy
     redirect_to post_index_url
+  end
+
+  # ログイン権限処理（post用）
+  def ensure_correct_user
+    @post = Post.find_by(id: params[:id])
+    if @current_user.id == @post.user_id || @current_user.admin?
+      flash[:notice] =""
+    else
+      flash[:notice] ="権限がありません"
+      redirect_to post_index_url
+    end
   end
 
 end

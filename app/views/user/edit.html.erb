@@ -13,11 +13,25 @@
     <input name="name" value="<%= @user.name %>">
     <p>メールアドレス</p>
     <input name="email" type="email" value="<%= @user.email %>">
-    <p>パスワード</p>
-    <input name="password" type="password" value="<%= @user.password %>">
+    <p>場所</p>
+    <i class="fas fa-map-marker-alt"></i><input name="place" value="<%= @user.place %>">
+    <p>種類</p>
+    <select name="giraffe_type" value="<%= @user.giraffe_type %>">
+      <option value="">--選択してください--</option>
+      <option value="マサイキリン">マサイキリン</option>
+      <option value="コルドファンキリン">コルドファンキリン</option>
+      <option value="ヌビアキリン">ヌビアキリン</option>
+      <option value="ナイジェリアキリン">ナイジェリアキリン</option>
+      <option value="アミメキリン">アミメキリン</option>
+      <option value="ケープキリン">ケープキリン</option>
+      <option value="アンゴラキリン">アンゴラキリン</option>
+    </select>
+    <p>体長</p>
+    <input name="body_length" value="<%= @user.body_length %>">m
     <p>プロフィール画像</p>
-    <input type="file" name="image" value=""><br>
+    <input type="file" name="image" value="<%= @user.img_name %>"><br>
     <input type="submit" value="保存">
     <% end %>
+    <%= link_to("パスワードの変更", "/user/#{@current_user.id}/edit_password") %>
   </div>
 </div>

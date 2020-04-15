@@ -36,6 +36,9 @@
   &tweet{
     font-size: 20px;
   }
+  &icon{
+    text-align: right;
+  }
   &date{
     text-align: right;
     color: #999;
@@ -69,6 +72,9 @@
   &tweet{
     margin: 5px;
     font-size: 20px;
+  }
+  &icon{
+    text-align: right;
   }
   &date{
     text-align: right;

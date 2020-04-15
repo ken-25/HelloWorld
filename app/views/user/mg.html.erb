@@ -15,12 +15,16 @@
   <p>ここはユーザー一覧です(管理画面想定)</p>
 
   <div class="user-index">
+    <h2>user</h2>
     <table>
-      <tr><th>id</th><th>user-name</th><th>email</th><th>password</th><th>img_name</th></tr>
+      <tr><th>id</th><th>admin</th><th>user-name</th><th>email</th><th>password</th><th>img_name</th></tr>
       <% @users.each do |user| %>
       <tr>
         <td>
           <%= user.id %>
+        </td>
+        <td>
+          <%= user.admin %>
         </td>
         <td>
           <%= link_to(user.name, "/user/#{user.id}") %>
@@ -29,7 +33,7 @@
           <%= user.email %>
         </td>
         <td>
-          <%= user.password %>
+          <%= user.password_digest %>
         </td>
         <td>
           <%= user.img_name %>
@@ -40,6 +44,7 @@
   </div>
 
   <div class="user-index">
+    <h2>post</h2>
     <table>
       <tr><th>id</th><th>content</th><th>user_id</th><th>created_at</th><th>updated_at</th></tr>
       <% @posts.each do |post| %>
@@ -58,6 +63,26 @@
         </td>
         <td>
           <%= post.updated_at %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="user-index">
+    <h2>like</h2>
+    <table>
+      <tr><th>id</th><th>post_id</th><th>user_id</th></tr>
+      <% @likes.each do |like| %>
+      <tr>
+        <td>
+          <%= like.id %>
+        </td>
+        <td>
+          <%= like.post_id %>
+        </td>
+        <td>
+          <%= like.user_id %>
         </td>
       </tr>
       <% end %>

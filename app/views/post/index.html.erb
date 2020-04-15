@@ -14,7 +14,17 @@
         <%= link_to(post.user.name, user_path(post.user_id)) %>
       </div>
       <div class="postindex-tweet">
-        <%= link_to(post.content, post_path(post.id)) %>
+        <%= link_to(safe_join(post.content.split("\n"), tag(:br)), post_path(post.id)) %>
+      </div>
+      <div class="postindex-icon">
+        <% if @current_user %>
+          <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+            <%= link_to(like_path(post.id) , method: :delete) do %><i class="fas fa-star favorite"></i><% end %>
+          <% else %>
+            <%= link_to(like_path(post.id), method: :put) do %><i class="fas fa-star nofavorite"></i><% end %>
+          <% end %>
+          <%= Like.where(post_id: post.id).count %>
+        <% end %>
       </div>
       <div class="postindex-date">
         <%= post.created_at %>

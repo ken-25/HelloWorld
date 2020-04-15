@@ -1,13 +1,57 @@
 <div class="main-content">
-  <h1>user詳細</h1>
-  <p><%= @user.name %>さんのプロフィール</p>
+  <h1><%= @user.name %>さんのプロフィール</h1>
 
   <div class="user-show">
     <img src=<%= "/users_img/#{@user.img_name}" %> alt="profile_img">
-    <p><%= @user.created_at %>に登録しました</p>
-    <% if @user.id == @current_user.id %>
+    <p>場所：<%= @user.place %></p>
+    <p>種類：<%= @user.giraffe_type %></p>
+    <p>体長：<%= @user.body_length %>m</p>
+    <p><%= @user.created_at %>に始めました</p>
+    <% if @user.id == @current_user.id || @current_user.admin? %>
     <%= link_to("編集", edit_user_path) %>
     <%= link_to("退会", @user , method: :delete) %>
     <% end %>
   </div>
+
+  <h2><%= @user.name %>さんの投稿</h2>
+  <% @posts.each do |post| %>
+  <div class="usershow-content">
+    <div class="usershow-img">
+      <img src="<%= "/users_img/#{post.user.img_name}" %>" alt="">
+    </div>
+    <div class="usershow-text">
+      <div class="usershow-user">
+        <%= link_to(post.user.name, user_path(post.user_id)) %>
+      </div>
+      <div class="usershow-tweet">
+        <%= link_to(post.content, post_path(post.id)) %>
+      </div>
+      <div class="usershow-date">
+        <%= post.created_at %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <h2><%= @user.name %>さんのお気に入り</h2>
+  <% @likes.each do |like| %>
+  <% post = Post.find_by(id: like.post_id) %>
+  <div class="usershow-content">
+    <div class="usershow-img">
+      <img src="<%= "/users_img/#{post.user.img_name}" %>" alt="">
+    </div>
+    <div class="usershow-text">
+      <div class="usershow-user">
+        <%= link_to(post.user.name, user_path(post.user_id)) %>
+      </div>
+      <div class="usershow-tweet">
+        <%= link_to(post.content, post_path(post.id)) %>
+      </div>
+      <div class="usershow-date">
+        <%= post.created_at %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
 </div>
