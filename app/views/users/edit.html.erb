@@ -27,11 +27,13 @@
       <option value="アンゴラキリン">アンゴラキリン</option>
     </select>
     <p>体長</p>
-    <input name="body_length" value="<%= @user.body_length %>">m
+    <input name="body_length" value="<%= @user.body_length %>">
     <p>プロフィール画像</p>
     <input type="file" name="image" value="<%= @user.img_name %>"><br>
     <input type="submit" value="保存">
     <% end %>
-    <%= link_to("パスワードの変更", "/user/#{@current_user.id}/edit_password") %>
+    <p><%= link_to("パスワードの変更", edit_user_password_path(@user)) %></p>
+
   </div>
+  <%= link_to("投稿一覧", posts_path) %>
 </div>

@@ -7,9 +7,11 @@
     <p>種類：<%= @user.giraffe_type %></p>
     <p>体長：<%= @user.body_length %>m</p>
     <p><%= @user.created_at %>に始めました</p>
-    <% if @user.id == @current_user.id || @current_user.admin? %>
-    <%= link_to("編集", edit_user_path) %>
-    <%= link_to("退会", @user , method: :delete) %>
+    <% if @current_user %>
+      <% if @user.id == @current_user.id || @current_user.admin? %>
+        <%= link_to("編集", edit_user_path) %>
+        <%= link_to("退会", @user , method: :delete) %>
+      <% end %>
     <% end %>
   </div>
 
@@ -24,7 +26,17 @@
         <%= link_to(post.user.name, user_path(post.user_id)) %>
       </div>
       <div class="usershow-tweet">
-        <%= link_to(post.content, post_path(post.id)) %>
+        <%= link_to(safe_join(post.content.split("\n"), tag(:br)), post_path(post.id)) %>
+      </div>
+      <div class="usershow-icon">
+        <% if @current_user %>
+          <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+            <%= link_to(like_path(post.id) , method: :delete) do %><i class="fas fa-star favorite"></i><% end %>
+          <% else %>
+            <%= link_to(like_path(post.id), method: :put) do %><i class="fas fa-star nofavorite"></i><% end %>
+          <% end %>
+          <%= Like.where(post_id: post.id).count %>
+        <% end %>
       </div>
       <div class="usershow-date">
         <%= post.created_at %>
@@ -45,7 +57,17 @@
         <%= link_to(post.user.name, user_path(post.user_id)) %>
       </div>
       <div class="usershow-tweet">
-        <%= link_to(post.content, post_path(post.id)) %>
+        <%= link_to(safe_join(post.content.split("\n"), tag(:br)), post_path(post.id)) %>
+      </div>
+      <div class="usershow-icon">
+        <% if @current_user %>
+          <% if Like.find_by(user_id: @current_user.id, post_id: post.id) %>
+            <%= link_to(like_path(post.id) , method: :delete) do %><i class="fas fa-star favorite"></i><% end %>
+          <% else %>
+            <%= link_to(like_path(post.id), method: :put) do %><i class="fas fa-star nofavorite"></i><% end %>
+          <% end %>
+          <%= Like.where(post_id: post.id).count %>
+        <% end %>
       </div>
       <div class="usershow-date">
         <%= post.created_at %>

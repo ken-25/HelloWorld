@@ -4,12 +4,9 @@
 
   <div class="user-new">
     <dib class="error-message">
-      <% @user.errors.full_messages.each do |message| %>
-      <%= message %>
-      <% end %>
       <%= @error_message %>
     </dib>
-    <%= form_tag("/user/#{@current_user.id}/update_password", method: :put) do %>
+    <%= form_tag(user_password_path(@current_user.id), method: :patch) do %>
     <p>現在のパスワード</p>
     <input type="password" name="old_password" value="">
     <p>新しいパスワード</p>

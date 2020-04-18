@@ -1,6 +1,7 @@
+<% provide(:title, "新規投稿") %>
 <div class="main-content">
   <h1>新規登録</h1>
-  <p>aaa</p>
+  <p>登録することで投稿できます</p>
 
   <div class="user-new">
     <dib class="error-message">
@@ -8,7 +9,7 @@
       <%= message %>
       <% end %>
     </dib>
-    <%= form_tag(user_index_path, method: :post) do %>
+    <%= form_tag(users_path, method: :post) do %>
       <p>ユーザー名</p>
       <input name="name" value="<%= @user.name %>">
       <p>メールアドレス</p>

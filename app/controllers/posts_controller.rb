@@ -1,4 +1,4 @@
-class PostController < ApplicationController
+class PostsController < ApplicationController
   before_action :authenticate_user, {only:[:new, :create, :edit, :update, :destroy]}
   before_action :ensure_correct_user, {only:[:edit, :update, :destroy]}
 
@@ -7,7 +7,7 @@ class PostController < ApplicationController
   end
   def show
     @post = Post.find_by(id: params[:id])
-    @user = User.find_by(id: @post.user_id)
+    @user = @post.user
   end
   def new
     @post = Post.new
@@ -17,7 +17,8 @@ class PostController < ApplicationController
       content: params[:content],
       user_id: @current_user.id)
     if @post.save
-      redirect_to post_index_url
+      flash[:notice] = "投稿しました"
+      redirect_to posts_url
     else
       render :new
     end
@@ -29,7 +30,8 @@ class PostController < ApplicationController
     @post = Post.find_by(id: params[:id])
     @post.content = params[:content]
     if @post.save
-      redirect_to post_index_url
+      flash[:notice] = "投稿を編集しました"
+      redirect_to posts_url
     else
       render :edit
     end
@@ -37,7 +39,8 @@ class PostController < ApplicationController
   def destroy
     @post = Post.find_by(id: params[:id])
     @post.destroy
-    redirect_to post_index_url
+    flash[:notice] = "削除しました"
+    redirect_to posts_url
   end
 
   # ログイン権限処理（post用）
@@ -47,7 +50,7 @@ class PostController < ApplicationController
       flash[:notice] =""
     else
       flash[:notice] ="権限がありません"
-      redirect_to post_index_url
+      redirect_to posts_url
     end
   end
 

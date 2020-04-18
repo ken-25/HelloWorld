@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_action :authenticate_user, {only:[:edit, :update, :destroy, :edit_password, :update_password, :mg]}
   before_action :ensure_correct_user, {only:[:edit, :update, :destroy, :edit_password, :update_password]}
   before_action :forbid_login_user, {only:[:new, :create, :login_form, :login]}
@@ -9,8 +9,8 @@ class UserController < ApplicationController
   end
   def show
     @user = User.find_by(id: params[:id])
-    @posts = Post.where(user_id: @user.id)
-    @likes = Like.where(user_id: @user.id)
+    @posts = @user.posts.order(created_at: :desc)
+    @likes = Like.where(user_id: @user.id).order(created_at: :desc)
   end
   def new
     @user = User.new
@@ -27,7 +27,8 @@ class UserController < ApplicationController
       place: "サバンナ")
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_index_url
+      flash[:notice] ="ようこそ"
+      redirect_to users_url
     else
       render :new
     end
@@ -48,38 +49,20 @@ class UserController < ApplicationController
       File.binwrite("public/users_img/#{@user.img_name}", image.read)
     end
     if @user.save
-      redirect_to user_index_url
+      flash[:notice] ="ユーザー情報を更新しました"
+      redirect_to user_url(@user)
     else
+      flash.now[:notice] = "更新できませんでした"
       render :edit
     end
   end
   def destroy
     @user = User.find_by(id: params[:id])
     @user.destroy
-    redirect_to user_index_url
+    flash[:notice] ="退会しました"
+    redirect_to root_url
   end
 
-  def edit_password
-    @user = User.find_by(id: params[:id])
-  end
-  def update_password
-    @user = User.find_by(id: params[:id])
-    if @user.authenticate(params[:old_password])
-      if params[:new_password] == params[:confirmation_password]
-        @user.password = params[:new_password]
-        @user.save
-        flash[:notice] ="パスワードを保存しました"
-        redirect_to user_index_url
-      else
-        @error_message ="新しいパスワード(確認用)が一致しません"
-        render :edit_password
-      end
-    else
-      @error_message ="パスワードが違います"
-      render :edit_password
-    end
-
-  end
 #管理者のみアクセス可
   def mg
     @users = User.all.order(created_at: :desc)
@@ -87,7 +70,7 @@ class UserController < ApplicationController
     @likes = Like.all.order(created_at: :desc)
   end
 
-  # ログイン関連
+# ログイン関連
   def login_form
     @user = User.new
   end
@@ -95,7 +78,8 @@ class UserController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to post_index_url
+      flash[:notice] ="ログインしました"
+      redirect_to posts_url
     else
       @error_message = "メールアドレスまはたパスワードが間違っています"
       @email = params[:email]
@@ -105,6 +89,7 @@ class UserController < ApplicationController
   end
   def logout
     session[:user_id] = nil
+    flash.now[:notice] ="ログアウトしました"
     render :login_form
   end
 

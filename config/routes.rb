@@ -1,18 +1,20 @@
 Rails.application.routes.draw do
-  get "/" => "home#top"
+  root "home#top"
   get "about" => "home#about"
-  get "admin" => "user#mg"
+  get "admin" => "users#mg"
 
-  resources :user
-  get "login" => "user#login_form"
-  post "login" => "user#login"
-  get "logout" => "user#logout"
-  get "/user/:id/edit_password" => "user#edit_password"
-  put "/user/:id/update_password" => "user#update_password"
+  resources :users do
+    resource :password, only:[:edit, :update]
+  end
+  get "a" => "password#edit"
 
-  resources :post
+  get "login" => "users#login_form"
+  post "login" => "users#login"
+  get "logout" => "users#logout"
 
-  resources :like, only: [:update, :destroy]
+  resources :posts
+
+  resources :likes, only: [:update, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

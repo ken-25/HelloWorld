@@ -27,7 +27,7 @@
           <%= user.admin %>
         </td>
         <td>
-          <%= link_to(user.name, "/user/#{user.id}") %>
+          <%= link_to(user.name, user_path(user.id)) %>
         </td>
         <td>
           <%= user.email %>
