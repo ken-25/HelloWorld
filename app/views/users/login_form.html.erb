@@ -6,7 +6,7 @@
     <dib class="error-message">
       <%= @error_message %>
     </dib>
-    <%= form_tag("/login", method: :post) do %>
+    <%= form_tag(login_users_path, method: :post) do %>
       <p>メールアドレス</p>
       <input name="email" type="email" value="<%= @email %>">
       <p>パスワード</p>

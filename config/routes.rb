@@ -5,12 +5,12 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :password, only:[:edit, :update]
+    collection do
+      post :login
+      get :login_form
+      get :logout
+    end
   end
-  get "a" => "password#edit"
-
-  get "login" => "users#login_form"
-  post "login" => "users#login"
-  get "logout" => "users#logout"
 
   resources :posts
 

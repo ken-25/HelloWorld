@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @posts = @user.posts.order(created_at: :desc)
-    @likes = Like.where(user_id: @user.id).order(created_at: :desc)
+    @likes = @user.likes.order(created_at: :desc)
   end
   def new
     @user = User.new
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
       flash[:notice] ="ユーザー情報を更新しました"
       redirect_to user_url(@user)
     else
-      flash.now[:notice] = "更新できませんでした"
+      flash.now[:notice] = ""
       render :edit
     end
   end
